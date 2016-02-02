@@ -92,6 +92,7 @@
     width:45%;
     float:left;
     margin:2%;
+    clear:right;
 }
 
 /* independent side menu scrolling from page */
@@ -116,4 +117,9 @@
 }
 .artist{
     color:gray;
+}
+
+#mainHeader{
+    margin:0px;
+    font-size:24px;
 }

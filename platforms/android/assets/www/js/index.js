@@ -26,37 +26,24 @@ function toggleFooter(){
     }
 }
 
-function loadDataTest(){
-    jQuery.getJSON("testData/items.json", function(data){
-       var obs = data.obs;
-       console.log(obs[0].title);
-    });
-}
-
 function testPage(){
     $.mobile.changePage("#pagetwo", {transition:"slide"});
 }
+
 function backToHome(){
     $.mobile.changePage("#pageone", {transition:"slide", reverse:true});
-}
-
-function localTest(){
-    localStorage.setItem("testItem", $("#testInput").val());
 }
 
 
 $(function(){
     
-    //testing local storage:
-    $("#localP").html(localStorage.getItem("testItem"));
-    
     //Loading main page content:
     jQuery.getJSON("testData/items.json", function(data){
         
+        //loads json data:
         var obsList = data.obs;
-        
         for(var i=0; i<obsList.length; i++){
-            $("#homePage").html($("#homePage").html() + "<div class='itemDivs'> <img class='logo' src='img/logo.png'/><center><p class='title'>" + obsList[i].title + "</p></center><center><p class='artist'>" + obsList[i].artist +"</p></center></div>");    
+            $("#discoverPage").html($("#disCover").html() + "<div class='itemDivs'> <img class='logo' src='img/logo.png'/><center><p class='title'>" + obsList[i].title + "</p></center><center><p class='artist'>" + obsList[i].artist +"</p></center></div>");    
             //Styling the right height:
             var theDivWidth = $(".itemDivs").css("width");
             var picHeight = theDivWidth.substring(0, theDivWidth.length-2);
@@ -69,11 +56,11 @@ $(function(){
             $(".logo").css("height", picHeight);
             $(".logo").css("margin-left", picMargin);
             $(".logo").css("margin-top", picMargin);
+            
         }
         
     });
     
-    var easterCount = 0;
     
     //Removes the bullshit parent div the input field got    
     $("#searchInp").closest('div').remove();
@@ -82,12 +69,12 @@ $(function(){
         $(".pages").hide();
         $("#homePage").show();
 
-    
+    //Easter egg:
+    var easterCount = 0;
     $("html").click(function(event){
         if(event.target.id == "myHeader"){
             easterCount += 1;
             if(easterCount == 10){
-                //Easter Egg Here:
                 if($("#myHeader").html()[0] == "P"){
                     $("#myHeaderBar").css("background-color", "blue");
                     $("#myHeader").html("Londonderry Radio")
@@ -139,8 +126,7 @@ $(function(){
         }
     });
     
-    
     //Temporary Testing:
-
+    
     
 });
