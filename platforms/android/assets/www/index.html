@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="lib/jquery.mobile-1.4.5.min.css" />
+    
+    <link rel="stylesheet" href="lib/font-awesome-4.5.0/css/font-awesome.min.css">
+    <script src="lib/jquery.js"></script>
+    <script src="lib/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<div data-role="page" id="pageone">
+    
+    <!-- Side menu -->
+    <div data-role="panel" id="myPanel" data-swipe-open="true" data-display="overlay"> 
+        
+        <div class="sideMenuElement" id="inputDiv">
+            <input id="searchInp" placeholder="Search for content here..."/>
+            <i id="searchIcon" class="fa fa-search fa-1x side-menu-icon"></i>
+        </div>
+        
+        <div class="sideMenuElement" onclick="swapPage('homePage')">
+            <i class="fa fa-1x side-menu-icon-large fa-home"><span class="listTitle">Home</span></i>
+        </div>
+        
+        <div class="sideMenuElement" onclick="swapPage('discoverPage')">
+            <i class="fa fa-1x side-menu-icon-large fa-archive"><span class="listTitle">Discover</span></i>
+        </div>
+        
+        <div class="sideMenuElement" onclick="swapPage('queuePage')">
+            <i class="fa fa-1x side-menu-icon-large fa-list"><span class="listTitle">Queue</span></i>
+        </div>
+        
+        <div class="sideMenuElement" onclick="swapPage('livestreamPage')">
+            <i class="fa fa-1x side-menu-icon-large fa-rss"><span class="listTitle">Livestream</span></i>
+        </div>
+        
+        <div class="sideMenuElement" onclick="swapPage('settingsPage')">
+            <i class="fa fa-1x side-menu-icon-large fa-gear"><span class="listTitle">Settings</span></i>
+        </div>
+        
+        <div class="sideMenuElement" onclick="swapPage('contactPage')">
+            <i class="fa fa-1x side-menu-icon-large fa-envelope-o"><span class="listTitle">Contact Us</span></i>
+        </div>
+        
+        
+    </div> 
+    
+    <!-- Header Bar -->
+    <div data-role="header" id="myHeaderBar">
+        <a id="sideMenuLink" href="#myPanel"><i id="sideMenuButton" class="fa fa-align-justify fa-2x"></i></a>
+        <h1 id="myHeader">Pinkerton Academy Radio</h1>  
+    </div>
+
+    <!-- Main Page Content -->
+    <div data-role="main" class="ui-content pages" id="homePage">
+        <h1>This is the main page</h1>
+        <button type="button" onclick="loadDataTest()">Click to load data</button>
+        <input id="testInput" type="text">
+        <button type="button" onclick="localTest()">Test local storage</button>
+        <p id="localP"></p>
+        
+        
+        
+    </div>
+    
+    <div data-role="main" class="ui-content pages" id="discoverPage">
+        This is the discover page
+    </div>
+    
+    <div data-role="main" class="ui-content pages" id="queuePage">
+        This is the queue page
+    </div>
+    
+    <div data-role="main" class="ui-content pages" id="livestreamPage">
+        This is the livestream page
+    </div>
+    
+    <div data-role="main" class="ui-content pages" id="settingsPage">
+        This is the settings page
+    </div>
+    
+    <div data-role="main" class="ui-content pages" id="contactPage">
+        This is the Contact page
+    </div>
+
+    <!-- Footer -->
+    <div data-role="footer" data-position="fixed" id="footer">
+        
+    </div>
+  
+</div>
+
+
+<div id="pagetwo" data-role="page">
+    <div data-role="header" id="myHeaderBar">
+        <a id="sideMenuLink" onclick="backToHome()"><i id="sideMenuButton" class="fa fa-align-justify fa-2x"></i></a>
+        <h1 id="myHeader">Pinkerton Academy Radio</h1>  
+    </div>
+    <div data-role="main" class="ui-content pages" id="homePage">
+        <h1>Second Page!</h1>
+    </div>
+    
+</div>
+
+
+<script>
+
+
+</script>
+</html>
