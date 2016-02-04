@@ -114,9 +114,10 @@
 #footer{
     height:0px;
     text-align:center;
-    background-color:#292929;
+    background-color:#808080;
     border:0px;
     overflow:hidden;
+    z-index:99;
 }
 
 .artist, .title{

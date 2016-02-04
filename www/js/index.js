@@ -25,6 +25,11 @@
 function swapPage(page){
     $(".pages").hide();
     $("#" + page).show();
+    
+    page = page.substring(0, page.length-4);
+    page = page[0].toUpperCase() + page.substring(1, page.length);
+    $("#myHeader").html(page);
+    
     $("#myPanel").panel("close");
 }
 
