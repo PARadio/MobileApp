@@ -5,6 +5,8 @@
     border-bottom-color: rgb(228, 33, 18);
     border-left-color: rgb(228, 33, 18);
     background-color: #F54436;
+    position:fixed;
+    width:100%;
 }
 #myHeader{
     color:white;
@@ -50,7 +52,8 @@
 }
 
 #myPanel{
-    background-color:#4A4A4A;
+    background-color:#292929;
+    z-index:100;
 }
 
 .ui-panel-inner{
@@ -86,13 +89,15 @@
 .logo{
     /*height:60%;*/
     /*margin-left:20%;*/
+    border:solid black 2px;
+    border-radius:5px;
 }
 
 .itemDivs{
     width:45%;
     float:left;
     margin:2%;
-    clear:right;
+    margin-bottom:4%;
 }
 
 /* independent side menu scrolling from page */
@@ -109,6 +114,9 @@
 #footer{
     height:0px;
     text-align:center;
+    background-color:#292929;
+    border:0px;
+    overflow:hidden;
 }
 
 .artist, .title{
@@ -117,9 +125,100 @@
 }
 .artist{
     color:gray;
+    font-size:14px;
 }
 
 #mainHeader{
     margin:0px;
     font-size:24px;
+}
+.itemDivPopup{
+    border:solid black;
+    position:absolute;
+    height:25%;
+    width:35%;
+    margin-left:15%;
+    margin-top:20%;
+    border-radius:5%;
+    background-color: #F54436;
+    color:white;
+    text-shadow:0px 0px;
+}
+.popUpText{
+    border-bottom:solid white 1px;
+    display:block;
+    font-size:18px;
+}
+
+#darkenDiv{
+    background-color:black;
+    opacity:.4;
+    z-index:99;
+    height:100%;
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+}
+body{
+    margin:0px;
+}
+
+#popupDiv{
+    position:fixed;
+    height:80%;
+    width:80%;
+    margin-left:5%;
+    margin-top:-5%;
+    background-color:#292929;
+    text-shadow:0px 0px 0px;
+    color:white;
+    border:solid black;
+    border-radius:10px;
+}
+#footerTitle{
+    color:white;
+    text-shadow:0px 0px 0px;
+    letter-spacing:1px;
+    font-weight:normal;
+    margin-bottom:0px;
+    margin-right:5%;
+    margin-top:3%;
+}
+#footerArtist{
+    color:lightgray;
+    text-shadow:0px 0px 0px;
+    font-weight:normal;
+    margin-top:0px;
+    font-size:14px;
+    margin-right:22%;
+    margin-bottom:5%;
+    white-space:nowrap;
+}
+#footerIcon{
+    float:left;
+    height:5vh;
+    margin-right:0px;
+    margin-left:5%;
+    margin-top:2%;
+}
+#footerUpIcon{
+    color:white;
+    float:left;
+    font-weight:normal;
+    margin-left:2%;
+    margin-top:4%;
+}
+#footerPlay{
+    color:white;
+    float:right;
+    font-weight:normal;
+    margin-right:0px;
+    margin-top:4%;
+    margin-left:12%;
+}
+#p1Header{
+    margin-top:15%;
+    font-size:24px;
+    margin-bottom:0px;
 }

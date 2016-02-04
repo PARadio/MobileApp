@@ -1,4 +1,4 @@
-$( document ).on( "pageinit", "#pageone", function() {
+//$( document ).on( "pageinit", "#pageone", function() {
     $( document ).on( "swipeleft swiperight", "#pageone", function( e ) {
         // We check if there is no open panel on the page because otherwise
         // a swipe to close the left panel would also open the right panel (and v.v.).
@@ -6,10 +6,21 @@ $( document ).on( "pageinit", "#pageone", function() {
         if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
             if ( e.type === "swiperight" ) {
                 $( "#myPanel" ).panel( "open" );
+                $("#darkenDiv").show();
             }
         }
     });
-});
+    
+    $(document).on("swipeleft swiperight", "#container1", function(e){
+         if ( $.mobile.activePage.jqmData( "panel" ) == "open" ) {
+            if(e.type === "swipeleft"){
+                $("#darkenDiv").hide();
+                $("#myPanel").panel("close");
+            }   
+         }
+    });
+    
+//});
 
 function swapPage(page){
     $(".pages").hide();
@@ -17,12 +28,31 @@ function swapPage(page){
     $("#myPanel").panel("close");
 }
 
-function toggleFooter(){
+function openFooter(obj){
+    
+    var art = obj.clicked.find(".artist").html();
+    var tit = obj.clicked.find(".title").html();
+    
+    
+    if(tit.length >= 16){
+        tit = tit.substr(0, 13) + "..."
+    }
+    
+    if(art > 19){
+        art = art.substr(0, 16) + "...";
+    }
+    
+    
+    $("#footerTitleText").html(tit);
+    $("#footerArtist").html(art);
+    
+    
+    
     if($("#footer").css("height") == "0px"){
-        $("#footer").animate({height:"15%"}, 500);
+        $("#footer").animate({height:"10%"}, 500);
     }
     else{
-        $("#footer").animate({height:"0px"}, 500);
+        //$("#footer").animate({height:"0px"}, 500);
     }
 }
 
@@ -43,8 +73,26 @@ $(function(){
         //loads json data:
         var obsList = data.obs;
         for(var i=0; i<obsList.length; i++){
-            $("#discoverPage").html($("#disCover").html() + "<div class='itemDivs'> <img class='logo' src='img/logo.png'/><center><p class='title'>" + obsList[i].title + "</p></center><center><p class='artist'>" + obsList[i].artist +"</p></center></div>");    
+            $("#homePage").html($("#homePage").html() + "<div class='itemDivs' id='itemDiv" + (1 +i).toString() +"'> <img class='logo' src='img/logo.png'/><center><p class='title' id='title" + (i+1).toString() + "'>" + obsList[i].title + "</p></center><center><p class='artist' id='artist" + (i+1).toString() + "'>" + obsList[i].artist +"</p></center></div>");    
+            
+            
+            //preventing title and author overflow:
+            if(obsList[i].title.length > 16){
+                if(obsList[i].title.length >= 32){
+                    $("#title" + (i+1).toString()).html($("#title" + (i+1).toString()).html().substr(0, 28) + "...");
+                }
+                $("#title" + (i+1).toString()).css("font-size", "14px");
+            }
+            if(obsList[i].artist.length > 16){
+                if(obsList[i].title.length >= 32){
+                    $("#artist" + (i+1).toString()).html($("#artist" + (i+1).toString()).html().substr(0, 28) + "...");
+                }
+                $("#artist" + (i+1).toString()).css("font-size", "14px");
+            }
+            
+            
             //Styling the right height:
+            
             var theDivWidth = $(".itemDivs").css("width");
             var picHeight = theDivWidth.substring(0, theDivWidth.length-2);
             picHeight = (parseInt(picHeight) * 3) / 5;
@@ -56,18 +104,29 @@ $(function(){
             $(".logo").css("height", picHeight);
             $(".logo").css("margin-left", picMargin);
             $(".logo").css("margin-top", picMargin);
+            $(".itemDivPopup").hide();
+            $(".itemDivs").on("taphold", function(){
+               $("#popupDiv").show();
+            });
+            $(".itemDivs").click(function(event){
+               openFooter(
+                    {id:$(this).attr("id"), clicked:$(this)}   
+                ); 
+            });
             
         }
         
     });
     
-    
+
     //Removes the bullshit parent div the input field got    
     $("#searchInp").closest('div').remove();
     
     //Hides pages
         $(".pages").hide();
         $("#homePage").show();
+        $("#darkenDiv").hide();
+        $("#popupDiv").hide();
 
     //Easter egg:
     var easterCount = 0;
@@ -124,6 +183,17 @@ $(function(){
         else{
             easterCount = 0;
         }
+        
+        
+        //gets rid of popups on click anywhere else:
+        if(event.target.id != "popupDiv"){
+            $("#popupDiv").hide();
+        }
+        
+        if(event.target.id != "myPanel"){
+            $("#darkenDiv").hide();
+        }
+        
     });
     
     //Temporary Testing:
